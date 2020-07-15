@@ -1,0 +1,115 @@
+{
+  "servers": [
+    {
+      "transport":
+      {
+        "type": "tcp",
+        "host": "192.168.137.58",
+        "port": 8080,
+        "rtuOverTcp": true,
+        "reconnect": true
+      },
+      "devices": [
+        {
+          "unitId": 1,
+          "deviceName": "MDZPJ-00",
+          "attributesPollPeriod": 5000,
+          "timeseriesPollPeriod": 3000,
+          "attributes": [
+            {
+              "tag": "Serial number",
+              "type": "string",
+              "functionCode": 3,
+              "address": 400,
+              "registerCount": 6,
+              "byteOrder": "LITTLE"
+
+            }
+          ],
+          "timeseries": [
+            {
+              "tag": "Produce Num Setting",
+              "type": "long",
+              "functionCode": 3,
+              "address": 500,
+              "registerCount": 2,
+              "byteOrder": "BA DC FE HG"
+            },
+            {
+              "tag": "Current Produce Num",
+              "type": "long",
+              "functionCode": 3,
+              "address": 502,
+              "registerCount": 2,
+              "byteOrder": "BA DC FE HG"
+            },
+            {
+              "tag": "Current Speed",
+              "type": "long",
+              "functionCode": 3,
+              "address": 507,
+              "registerCount": 1,
+              "byteOrder": "BA DC"
+
+            },
+            {
+              "tag": "Total Produce Num",
+              "type": "long",
+              "functionCode": 3,
+              "address": 510,
+              "registerCount": 2,
+              "byteOrder": "BA DC FE HG"
+
+            },
+            {
+              "tag": "Alarm1",
+              "type": "long",
+              "functionCode": 3,
+              "address": 506,
+              "registerCount": 1,
+              "byteOrder": "BA DC"
+
+            },
+            {
+              "tag": "Alarm2",
+              "type": "long",
+              "functionCode": 3,
+              "address": 508,
+              "registerCount": 2,
+              "byteOrder": "BA DC FE HG"
+
+            },
+            {
+              "tag": "Auto/Manual",
+              "type": "boolean",
+              "functionCode": 1,
+              "address": 800,
+              "registerCount": 1
+            },
+            {
+              "tag": "Multi/Single",
+              "type": "boolean",
+              "functionCode": 1,
+              "address": 801,
+              "registerCount": 1
+            },
+            {
+              "tag": "SW-Start",
+              "type": "boolean",
+              "functionCode": 1,
+              "address": 802,
+              "registerCount": 1
+            },
+            {
+              "tag": "SW-stop",
+              "type": "boolean",
+              "functionCode": 1,
+              "address": 803,
+              "registerCount": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

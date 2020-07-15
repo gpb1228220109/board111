@@ -1,0 +1,25 @@
+{
+  "widgetsBundle": {
+    "alias": "_",
+    "title": "测试部件库",
+    "image": null
+  },
+  "widgetTypes": [
+    {
+      "alias": "_",
+      "name": "登录登出",
+      "descriptor": {
+        "type": "static",
+        "sizeX": 7.5,
+        "sizeY": 3,
+        "resources": [],
+        "templateHtml": "",
+        "templateCss": "",
+        "controllerScript": "self.onInit = function() {\n    loginfun();\n}\n\nvar username = 'sysadmin@thingsboard.org';\t \nvar password = 'sysadmin';\nvar user = {\n    'username': username,\n\t'name': username,\n\t'password': password\n};\n\nfunction loginfun(){\n    var url='http://127.0.0.1:8080/api/auth/login';\n    var httpRequest = new XMLHttpRequest();\n    httpRequest.open('POST', url, true);\n    httpRequest.setRequestHeader(\"Content-type\",\"application/json\");\n    httpRequest.setRequestHeader(\"Accept\",\"application/json\");\n    httpRequest.send(JSON.stringify(user));\n    \n    httpRequest.onreadystatechange = function () {\n        if (httpRequest.readyState == 4 && httpRequest.status == 200) {\n            var adminjwk = JSON.parse(httpRequest.responseText);\n           console.log(adminjwk.token);\n           let userService = self.ctx.$scope.$injector.get('userService');\n    url=\"curl -X GET --header 'Accept: text/html' --header 'X-Authorization: Bearer \"+adminjwk.token+\"' 'http://127.0.0.1:8080/api/tenant/13814000-1dd2-11b2-8080-808080808080/users{?textSearch,idOffset,textOffset,limit}&limit=1'\";\nvar httpRequest1 = new XMLHttpRequest();\n        httpRequest1.open('GET', url, true);\n        httpRequest1.send();\n        httpRequest1.onreadystatechange = function () {\n            if (httpRequest1.readyState == 4 && httpRequest1.status == 200) {\n                var json = httpRequest1.responseText;\n                console.log(json);\n            }\n        };\n    // userService.logout();\n    //let loginService=self.ctx.$scope.$injector.get('loginService');\n    //loginService.login(userService);\n    // userService = self.ctx.$scope.$injector.get('userService');\n    //userService.getJwtToken()\n    // let currentUser = userService.getCurrentUser();\n    var pageLink={\n            limit:20\n        };\n    //console.log(userService.getTenantAdmins('15693a40-b2a0-11e9-84e8-5d03e5f89017',pageLink));   \n    //let tenantAdmins=userService.getTenantAdmins(currentUser.customerId,pageLink);\n    //console.log(tenantAdmins);\n        }\n    };\n}\n",
+        "settingsSchema": "{\n    \"schema\": {\n        \"type\": \"object\",\n        \"title\": \"设置\",\n        \"required\": [\"cardHtml\"],\n        \"properties\": {\n            \"cardCss\": {\n                \"title\": \"CSS\",\n                \"type\": \"string\",\n                \"default\": \".card {\\n font-weight: bold; \\n}\"\n            },\n            \"cardHtml\": {\n                \"title\": \"HTML\",\n                \"type\": \"string\",\n                \"default\": \"<div class='card'>添加HTML代码</div>\"\n            }\n        }\n    },\n    \"form\": [\n        {\n            \"key\": \"cardCss\",\n            \"type\": \"css\"\n        },           \n        {\n            \"key\": \"cardHtml\",\n            \"type\": \"html\"\n        }    \n    ]\n}",
+        "dataKeySettingsSchema": "{}\n",
+        "defaultConfig": "{\"datasources\":[{\"type\":\"static\",\"name\":\"function\",\"dataKeys\":[{\"name\":\"f(x)\",\"type\":\"function\",\"label\":\"Random\",\"color\":\"#2196f3\",\"settings\":{},\"_hash\":0.15479322438769105,\"funcBody\":\"var value = prevValue + Math.random() * 100 - 50;\\nvar multiplier = Math.pow(10, 2 || 0);\\nvar value = Math.round(value * multiplier) / multiplier;\\nif (value < -1000) {\\n\\tvalue = -1000;\\n} else if (value > 1000) {\\n\\tvalue = 1000;\\n}\\nreturn value;\"}]}],\"timewindow\":{\"realtime\":{\"timewindowMs\":60000}},\"showTitle\":false,\"backgroundColor\":\"rgb(255, 255, 255)\",\"color\":\"rgba(0, 0, 0, 0.87)\",\"padding\":\"8px\",\"settings\":{\"cardHtml\":\"<div class='card'>添加HTML代码</div>\",\"cardCss\":\".card {\\n    font-weight: bold;\\n    font-size: 32px;\\n    color: #999;\\n    width: 100%;\\n    height: 100%;\\n    display: flex;\\n    align-items: center;\\n    justify-content: center;\\n}\"},\"title\":\"登录登出\",\"dropShadow\":true}"
+      }
+    }
+  ]
+}
